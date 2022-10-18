@@ -1,9 +1,12 @@
 let milSec=document.getElementById("milSec")
 let sec=document.getElementById("sec")
+let min=document.getElementById("min")
+let hour=document.getElementById("hour")
 
-let mSecond=00;
-let second=00;
-
+let mSecond=0;
+let second=0;
+let deq=0
+let saat=0
 
 
 
@@ -28,11 +31,34 @@ function timer() {
   if(second>9) {
     sec.innerText=second
   }
-  },10)
+  if(second>59) {
+    deq++;
+    min.innerText='0' + deq
+    second=0
+    sec.innerHTML='0'+ second
+  }
+  if(min>9) {
+    sec.innerText=second
+  }
+  if(min>59) {
+    saat++;
+    min.innerText='0' + saat
+    hour=0
+    min.innerHTML='0'+ deq
+  }
+  },0.1)
 }
 
+
+
 let str=document.getElementById("str");
-str.addEventListener('click',timer())
+str.addEventListener('click',e=>{
+  clearInterval(int)
+  int = setInterval(()=>{
+      second++;
+      aTag.innerText = second;
+  },1000)
+})
 
 
 let stp=document.getElementById("stp");
@@ -41,11 +67,12 @@ stp.addEventListener('click', e=>{
 })
 let reset=document.getElementById("rset")
 reset.addEventListener('click',e=>{
-  mSecond=0
+  milSec.innerText='00'
+  sec.innerText='00'
 })
 
 
-
+timer()
 
 
 //TODO-LIST JS
